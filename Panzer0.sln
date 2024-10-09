@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panzer0", "Panzer0\Panzer0.csproj", "{84D47272-DA0F-401F-9AA6-4E648090932E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84D47272-DA0F-401F-9AA6-4E648090932E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D47272-DA0F-401F-9AA6-4E648090932E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D47272-DA0F-401F-9AA6-4E648090932E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D47272-DA0F-401F-9AA6-4E648090932E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96B839D3-BB11-4BF9-BE37-925C5D907DE2}
+	EndGlobalSection
+EndGlobal
