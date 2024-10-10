@@ -9,30 +9,30 @@ namespace Panzer0.Map
     {
         public static readonly string[] Up =
         {
-            "╭-╿-╮",
-            "┇ 0 ┋",
-            "╰-┅-╯"
+            "╭─╿─╮",
+            "║ 0 ║",
+            "╰───╯"
         };
 
         public static readonly string[] Down =
         {
-            "╭-┅-╮",
-            "┇ 0 ┋",
-            "╰-╽-╯"
+            "╭───╮",
+            "║ 0 ║",
+            "╰─╽─╯"
         };
 
         public static readonly string[] Left =
         {
-            "╭-┅-╮",
-            "╾─0 ┋",
-            "╰-┅-╯"
+            "╭═══╮",
+            "╾─0 │",
+            "╰═══╯"
         };
 
         public static readonly string[] Right =
         {
-            "╭-┅-╮",
-            "┇ 0─╼",
-            "╰-┅-╯"
+            "╭═══╮",
+            "│ 0─╼",
+            "╰═══╯"
         };
     }
 }

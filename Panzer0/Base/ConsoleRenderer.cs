@@ -13,13 +13,10 @@ namespace Panzer0.Base
 
         private const int MaxColors = 8;
         private readonly ConsoleColor[] _colors;
+        private readonly string[,] _pixels;
         private readonly byte[,] _pixelColors;
-
         private readonly int _maxWidth;
         private readonly int _maxHeight;
-
-        private string[,] _previousPixels;
-        private string[,] _pixels;
 
         public ConsoleColor bgColor { get; set; }
 
@@ -47,19 +44,20 @@ namespace Panzer0.Base
 
             _pixels = new string[_maxWidth, _maxHeight];
             _pixelColors = new byte[_maxWidth, _maxHeight];
-
-            _previousPixels = new string[_maxWidth, _maxHeight];
         }
 
         public void SetPixel(int w, int h, string val, byte colorIdx)
         {
-            _pixels[w, h] = val;
-            _pixelColors[w, h] = colorIdx;
+            if (w < _maxWidth && h < _maxHeight)
+            {
+                _pixels[w, h] = val;
+                _pixelColors[w, h] = colorIdx;
+            }
         }
-
 
         public void Render()
         {
+            Console.Clear();
             Console.BackgroundColor = bgColor;
 
             for (var w = 0; w < _width; w++)
@@ -67,20 +65,15 @@ namespace Panzer0.Base
                 {
                     var colorIdx = _pixelColors[w, h];
                     var color = _colors[colorIdx];
-                    string symbol = _pixels[w, h];
+                    var symbol = _pixels[w, h];
 
                     if (symbol == null || color == bgColor)
                         continue;
 
                     Console.ForegroundColor = color;
 
-                    if (_previousPixels[w, h] == symbol)
-                    {
-                        _pixels[w, h] = " ";
-                    }
                     Console.SetCursorPosition(w, h);
                     Console.Write(symbol);
-                    _previousPixels[w, h] = symbol;
                 }
 
             Console.ResetColor();
@@ -95,20 +88,24 @@ namespace Panzer0.Base
 
             for (int i = 0; i < text.Length; i++)
             {
-                _pixels[atWidth + i, atHeight] = text[i].ToString();
-                _pixelColors[atWidth + i, atHeight] = (byte)colorIdx;
+                if (atWidth + i < _maxWidth && atHeight < _maxHeight)
+                {
+                    _pixels[atWidth + i, atHeight] = text[i].ToString();
+                    _pixelColors[atWidth + i, atHeight] = (byte)colorIdx;
+                }
             }
         }
 
         public void Clear()
         {
             for (int w = 0; w < _width; w++)
+            {
                 for (int h = 0; h < _height; h++)
                 {
                     _pixelColors[w, h] = 0;
-                    _pixels[w, h] = " ";
-                    _previousPixels[w, h] = " ";
+                    _pixels[w, h] = null;
                 }
+            }
         }
 
         public override bool Equals(object? obj)
@@ -123,7 +120,6 @@ namespace Panzer0.Base
                 return false;
             }
 
-
             for (int i = 0; i < _colors.Length; i++)
             {
                 if (_colors[i] != casted._colors[i])
@@ -133,13 +129,11 @@ namespace Panzer0.Base
             for (int w = 0; w < _width; w++)
                 for (var h = 0; h < _height; h++)
                 {
-                    if (_pixels[w, h] != casted._pixels[w, h] ||
-                                    _pixelColors[w, h] != casted._pixelColors[w, h])
+                    if (_pixels[w, h] != casted._pixels[w, h] || _pixelColors[w, h] != casted._pixelColors[w, h])
                     {
                         return false;
                     }
                 }
-
             return true;
         }
 
@@ -159,6 +153,6 @@ namespace Panzer0.Base
                 }
 
             return hash;
-        }        
+        }
     }
 }
